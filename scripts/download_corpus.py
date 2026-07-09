@@ -7,25 +7,110 @@ os.makedirs('data/corpus', exist_ok=True)
 wiki = wikipediaapi.Wikipedia('SemanticSearchProject/1.0 (hrishitaanalawade@gmail.com)', 'en')
 
 topics = [
-    "Machine learning", "Neural network", "Python programming language",
-    "Database", "Application programming interface", "Cloud computing",
-    "Computer security", "Artificial intelligence", "Data science",
-    "Computer vision", "Natural language processing", "Deep learning",
-    "Algorithm", "Software engineering", "Operating system",
-    "Internet", "Hypertext Transfer Protocol", "Domain Name System",
-    "Bitcoin", "Blockchain", "Encryption",
-    "Docker", "Kubernetes", "Microservices",
-    "PostgreSQL", "NoSQL", "SQL",
-    "Git", "Linux", "Virtual machine",
-    "Large language model", "Transformer model", "Generative adversarial network",
-    "Reinforcement learning", "Computer network", "Distributed computing",
-    "Load balancing", "Object-oriented programming", "Compiler",
-    "World War II", "Cold War", "Space race",
-    "Climate change", "Solar energy", "Electric vehicle",
-    "Human genome", "CRISPR", "Vaccine",
-    "Stock market", "Supply chain", "Inflation",
-]
+     # AI
+    "Machine learning",
+    "Deep learning",
+    "Large language model",
+    "Transformer model",
+    "Neural network",
+    "Computer vision",
+    "Natural language processing",
+    "Reinforcement learning",
+    "Generative adversarial network",
+    "Decision tree",
+    "Random forest",
+    "Support vector machine",
+    "K-means clustering",
+    "Principal component analysis",
+    "Bayesian network",
 
+    # Programming
+    "Python (programming language)",
+    "Java (programming language)",
+    "C++",
+    "JavaScript",
+    "TypeScript",
+    "Go (programming language)",
+    "Rust (programming language)",
+    "C Sharp (programming language)",
+    "PHP",
+    "Swift (programming language)",
+    "Kotlin (programming language)",
+
+    # Databases
+    "Database",
+    "SQL",
+    "PostgreSQL",
+    "MySQL",
+    "SQLite",
+    "MongoDB",
+    "Redis",
+    "Oracle Database",
+    "Apache Cassandra",
+    "Elasticsearch",
+
+    # Cloud
+    "Amazon Web Services",
+    "Microsoft Azure",
+    "Google Cloud Platform",
+    "Docker",
+    "Kubernetes",
+    "Terraform",
+    "Virtual machine",
+    "Load balancing",
+    "Microservices",
+    "Serverless computing",
+
+    # Networking
+    "Computer network",
+    "HTTP",
+    "HTTPS",
+    "TCP",
+    "UDP",
+    "IP address",
+    "DNS",
+    "Firewall",
+    "Virtual private network",
+    "Proxy server",
+
+    # Operating Systems
+    "Linux",
+    "Windows",
+    "macOS",
+    "Operating system",
+    "Kernel",
+    "File system",
+    "Process",
+    "Thread",
+    "Memory management",
+    "Scheduling (computing)",
+
+    # Algorithms
+    "Algorithm",
+    "Data structure",
+    "Binary tree",
+    "Graph theory",
+    "Heap (data structure)",
+    "Hash table",
+    "Dynamic programming",
+    "Greedy algorithm",
+    "Breadth-first search",
+    "Depth-first search",
+
+    # Cybersecurity
+    "Cryptography",
+    "Encryption",
+    "Authentication",
+    "Authorization",
+    "Cybersecurity",
+    "Malware",
+    "Ransomware",
+    "Digital signature",
+    "Public-key cryptography",
+    "Hash function",
+
+    
+]
 saved = 0
 for topic in topics:
     try:

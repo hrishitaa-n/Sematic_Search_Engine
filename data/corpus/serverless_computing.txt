@@ -1,0 +1,50 @@
+Serverless computing is "a cloud service category where the customer can use different cloud capability types without the customer having to provision, deploy and manage either hardware or software resources, other than providing customer application code or providing customer data. Serverless computing represents a form of virtualized computing", according to ISO/IEC 22123-2. Serverless computing is a broad ecosystem that includes the cloud provider, function as a service (FaaS), managed services, tools, frameworks, engineers, stakeholders, and other interconnected elements.
+
+Overview
+Serverless is a misnomer in the sense that servers are still used by cloud service providers to execute code for developers.  The definition of serverless computing has evolved over time, leading to varied interpretations. According to Ben Kehoe, serverless represents a spectrum rather than a rigid definition. Emphasis should shift from strict definitions and specific technologies to adopting a serverless mindset, focusing on leveraging serverless solutions to address business challenges.
+Serverless computing does not eliminate complexity but shifts much of it from the operations team to the development team. However, this shift is not absolute, as operations teams continue to manage aspects such as identity and access management (IAM), networking, security policies, and cost optimization. Additionally, while breaking down applications into finer-grained components can increase management complexity, the relationship between granularity and management difficulty is not strictly linear. There is often an optimal level of modularization where the benefits outweigh the added management overhead.
+According to Yan Cui, serverless techniques should be adopted only when they help to deliver customer value faster. And while adopting, organizations should take small steps and de-risk along the way.
+
+Challenges
+Serverless applications are prone to fallacies of distributed computing. In addition, they are prone to the following fallacies:
+
+Versioning is simple
+Compensating transactions always work
+Observability is optional
+
+Monitoring and debugging
+Monitoring and debugging serverless applications can present unique challenges due to their distributed, event-driven nature and proprietary environments. Traditional tools may fall short, making it difficult to track execution flows across services. However, modern solutions such as distributed tracing tools (e.g., AWS X-Ray, Datadog), centralized logging, and cloud-agnostic observability platforms are mitigating these challenges. Emerging technologies like OpenTelemetry, AI-powered anomaly detection, and serverless-specific frameworks are further improving visibility and root cause analysis. While challenges persist, advancements in monitoring and debugging tools are steadily addressing these limitations.
+
+Security
+According to OWASP, serverless applications are vulnerable to variations of traditional  attacks, insecure code, and some serverless-specific attacks (like denial of wallet). So, the risks have changed and attack prevention requires a shift in mindset.
+
+Vendor lock-in
+Serverless computing is provided as a third-party service. Applications and software that run in the serverless environment are by default locked to a specific cloud vendor. This issue is exacerbated in serverless computing, as with its increased level of abstraction, public vendors only allow customers to upload code to a FaaS platform without the authority to configure underlying environments. More importantly, when considering a more complex workflow that includes backend-as-a-service (BaaS), a BaaS offering can typically only natively trigger a FaaS offering from the same provider. This makes the workload migration in serverless computing virtually impossible. Therefore, considering how to design and deploy serverless workflows from a multi-cloud perspective could mitigate this.
+
+High-performance computing
+Serverless computing may not be ideal for certain high-performance computing (HPC) workloads due to resource limits often imposed by cloud providers, including maximum memory, CPU, and runtime restrictions.  For workloads requiring sustained or predictable resource usage, bulk-provisioned servers can sometimes be more cost-effective than the pay-per-use model typical of serverless platforms. However, serverless computing is increasingly capable of supporting specific HPC workloads, particularly those that are highly parallelizable and event-driven, by leveraging its scalability and elasticity. The suitability of serverless computing for HPC continues to evolve with advancements in cloud technologies.
+
+Anti-patterns
+The grain of sand anti-pattern refers to the creation of excessively small components (e.g., functions) within a system, often resulting in increased complexity, operational overhead, and performance inefficiencies. Lambda pinball is a related anti-pattern that can occur in serverless architectures when functions (e.g., AWS Lambda, Azure functions) excessively invoke each other in fragmented chains, leading to latency, debugging and testing challenges, and reduced observability. These anti-patterns are associated with the formation of a distributed monolith.
+These anti-patterns are often addressed through the application of clear domain boundaries, which distinguish between public and published interfaces. Public interfaces are technically accessible interfaces, such as methods, classes, API endpoints, or triggers, but they do not come with formal stability guarantees. In contrast, published interfaces involve an explicit stability contract, including formal versioning, thorough documentation, a defined deprecation policy, and often support for backward compatibility. Published interfaces may also require maintaining multiple versions simultaneously and adhering to formal deprecation processes when breaking changes are introduced.
+Fragmented chains of function calls are often observed in systems where serverless components (functions) interact with other resources in complex patterns, sometimes described as spaghetti architecture or a distributed monolith. In contrast, systems exhibiting clearer boundaries typically organize serverless components into cohesive groups, where internal public interfaces manage inter-component communication, and published interfaces define communication across group boundaries. This distinction highlights differences in stability guarantees and maintenance commitments, contributing to reduced dependency complexity.
+Additionally, patterns associated with excessive serverless function chaining are sometimes addressed through architectural strategies that emphasize native service integrations instead of individual functions, a concept referred to as the functionless mindset. However, this approach is noted to involve a steeper learning curve, and integration limitations may vary even within the same cloud vendor ecosystem.
+Reporting on serverless databases presents challenges, as retrieving data for a reporting service can either break the bounded contexts, reduce the timeliness of the data, or do both. This applies regardless of whether data is pulled directly from databases, retrieved via HTTP, or collected in batches. Mark Richards refers to this as the reach-in reporting anti-pattern. A possible alternative to this approach is for databases to asynchronously push the necessary data to the reporting service instead of the reporting service pulling it. While this method requires a separate contract between services and the reporting service and can be complex to implement, it helps preserve bounded contexts while maintaining a high level of data timeliness.
+
+Principles
+Adopting DevSecOps practices can help improve the use and security of serverless technologies. 
+In serverless applications, the distinction between infrastructure and business logic is often blurred, with applications typically distributed across multiple services. To maximize the effectiveness of testing, integration testing is emphasized for serverless applications. Additionally, to facilitate debugging and implementation, orchestration is used within the  bounded context, while choreography is employed between different bounded contexts.
+Ephemeral resources are typically kept together to maintain high cohesion. However, shared resources with long spin-up times, such as AWS RDS clusters and landing zones, are often managed in separate repositories, deployment pipeline, and stacks.
+
+See also
+As a service
+Backend as a service
+Cloud computing
+Function as a service
+
+References
+Further reading
+Roberts, Mike (25 July 2016). "Serverless Architectures". MartinFowler.com. Retrieved 30 July 2016.
+Jamieson, Frazer (4 September 2017). "Losing the server? Everybody is talking about serverless architecture". BCS, the Chartered Institute for IT. Retrieved 7 November 2017.
+Anderson, David (9 March 2022). "Power the Future and Accelerate Your Organization to the Modern Cloud and Serverless with 'The Value Flywheel Effect'". The Serverless Edge. Retrieved 9 March 2022.
+14 authors from UC Berkeley (9 February 2019). "Cloud Programming Simplified: A Berkeley View on Serverless Computing".
