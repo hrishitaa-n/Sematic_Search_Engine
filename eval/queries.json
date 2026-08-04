@@ -1,0 +1,12 @@
+[
+  {"query": "How does machine learning work?", "expected_files": ["machine_learning.txt"]},
+  {"query": "What is a neural network?", "expected_files": ["neural_network.txt"]},
+  {"query": "How does encryption work?", "expected_files": ["encryption.txt"]},
+  {"query": "What is the internet?", "expected_files": ["internet.txt"]},
+  {"query": "How does bitcoin work?", "expected_files": ["bitcoin.txt"]},
+  {"query": "What is deep learning?", "expected_files": ["deep_learning.txt"]},
+  {"query": "How do computers store data?", "expected_files": ["database.txt"]},
+  {"query": "What is artificial intelligence?", "expected_files": ["artificial_intelligence.txt"]},
+  {"query": "How does cloud computing work?", "expected_files": ["cloud_computing.txt"]},
+  {"query": "What is a blockchain?", "expected_files": ["blockchain.txt"]}
+]
