@@ -1,7 +1,7 @@
 TypeScript (TS) is a high-level programming language that adds static typing with optional type annotations to JavaScript. It is designed for developing large applications. It transpiles to JavaScript. It is developed by Microsoft as free and open-source software released under an Apache License 2.0.
 TypeScript may be used to develop JavaScript applications for both client-side and server-side execution (as with React.js, Node.js, Deno or Bun). Multiple options are available for transpiling. The default TypeScript Compiler can be used, or the Babel compiler can be invoked to convert TypeScript to JavaScript.
 TypeScript supports definition files that can contain type information of existing JavaScript libraries, much like C++ header files can describe the structure of existing object files. This enables other programs to use the values defined in the files as if they were statically typed TypeScript entities. There are third-party header files for popular libraries such as jQuery, MongoDB, and D3.js. TypeScript headers for the Node.js library modules are also available, allowing development of Node.js programs within TypeScript.
-The TypeScript compiler is written in TypeScript and compiled to JavaScript. It is licensed under the Apache License 2.0. Anders Hejlsberg, lead architect of C# and creator of Delphi and Turbo Pascal, has worked on developing TypeScript.
+Before TypeScript 7.0, the TypeScript compiler was written in TypeScript and compiled to JavaScript. In TypeScript 7.0, it was rewritten in Go. It is licensed under the Apache License 2.0. Anders Hejlsberg, lead architect of C# and creator of Delphi and Turbo Pascal, has worked on developing TypeScript.
 
 History
 TypeScript was released to the public in October 2012, with version 0.8, after two years of internal development at Microsoft. Soon after the initial public release, Miguel de Icaza praised the language, but criticized the lack of mature integrated development environment (IDE) support apart from Microsoft Visual Studio, which was unavailable then on Linux and macOS. As of April 2021 there is support in other IDEs and text editors, including Emacs, Vim, WebStorm, Atom and Microsoft's own Visual Studio Code. TypeScript 0.9, released in 2013, added support for generics.
@@ -49,8 +49,8 @@ A plugin is available for the NetBeans IDE.
 A plugin is available for the Eclipse IDE (version Kepler)
 TypEcs is available for the Eclipse IDE.
 The Cross Platform Cloud IDE Codeanywhere supports TypeScript.
-Webclipse An Eclipse plugin designed to develop TypeScript and Angular 2.
-Angular IDE A standalone IDE available via npm to develop TypeScript and Angular 2 applications, with integrated terminal support.
+Webclipse is an Eclipse plugin designed to develop TypeScript and Angular 2.
+Angular IDE is a standalone IDE available via npm to develop TypeScript and Angular 2 applications, with integrated terminal support.
 Tide –  TypeScript Interactive Development Environment for Emacs.
 
 Integration with build automation tools

@@ -61,7 +61,7 @@ save the state of the currently running process.
 restore the state after the interrupt is serviced.
 
 Software interrupt
-A software interrupt is a message to a process that an event has occurred. This contrasts with a hardware interrupt — which is a message to the central processing unit (CPU) that an event has occurred. Software interrupts are similar to hardware interrupts — there is a change away from the currently running process. Similarly, both hardware and software interrupts execute an interrupt service routine.
+A software interrupt is a message to a process that an event has occurred. This contrasts with a hardware interrupt—which is a message to the central processing unit (CPU) that an event has occurred. Software interrupts are similar to hardware interrupts—there is a change away from the currently running process. Similarly, both hardware and software interrupts execute an interrupt service routine.
 Software interrupts may be normally occurring events. It is expected that a time slice will occur, so the kernel will have to perform a context switch. A computer program may set a timer to go off after a few seconds in case too much data causes an algorithm to take too long.
 Software interrupts may be error conditions, such as a malformed machine instruction. However, the most common error conditions are division by zero and accessing an invalid memory address.
 Users can send messages to the kernel to modify the behavior of a currently running process. For example, in the command-line environment, pressing the interrupt character (usually Control-C) might terminate the currently running process.
@@ -170,7 +170,7 @@ This cost in supporting operating systems diversity can be avoided by instead wr
 Another approach is for operating system vendors to adopt standards. For example, POSIX and OS abstraction layers provide commonalities that reduce porting costs.
 
 Popular operating systems
-As of October 2025, Android, based on the Linux kernel, is the most popular operating system with a 38% market share, followed by Microsoft Windows at 31%, iOS and iPadOS at 15%, macOS at 7%, and Linux at 1%. Android, iOS, and iPadOS are mobile operating systems, while Windows, macOS, and Linux are desktop operating systems.
+As of October 2025, metrics for web traffic show that Android is the most popular operating system used to connect to the web, with a 38% share, followed by Microsoft Windows at 31%, iOS and iPadOS at 15%, macOS at 7%, and Linux at 1%. Android, iOS, and iPadOS are mobile operating systems, while Windows, macOS, and Linux are desktop operating systems.
 
 Linux
 Linux is free software distributed under the GNU General Public License (GPL), which means that all of its derivatives are legally required to release their source code. Linux was designed by programmers for their own use, thus emphasizing simplicity and consistency, with a small number of basic elements that can be combined in nearly unlimited ways, and avoiding redundancy.

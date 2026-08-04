@@ -20,8 +20,8 @@ HTTP/3 uses QUIC + UDP transport protocols instead of TCP. Only the IP layer is 
 
 Use
 HTTP/2 is supported by 71% of websites (34.1% HTTP/2 + 36.9% HTTP/3 with backwards compatibility) and supported by almost all web browsers (over 98% of users). It is also supported by major web servers over Transport Layer Security (TLS) using an Application-Layer Protocol Negotiation (ALPN) extension where TLS 1.2 or newer is required.
-HTTP/3 is used on 36.9% of websites and is supported by most web browsers, i.e. (at least partially) supported by 97% of users. HTTP/3 uses QUIC instead of TCP for the underlying transport protocol. Like HTTP/2, it does not obsolete previous major versions of the protocol. In 2019, support for HTTP/3 was first added to Cloudflare and Chrome and also enabled in Firefox. HTTP/3 has lower latency for real-world web pages and loads faster than HTTP/2, in some cases over three times faster than HTTP/1.1, which is still commonly the only protocol enabled.
-HTTPS, the secure variant of HTTP, is used by more than 85% of websites.
+HTTP/3 is used on 40% of websites and is supported by most web browsers, i.e. (at least partially) supported by 97% of users. HTTP/3 uses QUIC instead of TCP for the underlying transport protocol. Like HTTP/2, it does not obsolete previous major versions of the protocol. In 2019, support for HTTP/3 was first added to Cloudflare and Chrome and also enabled in Firefox. HTTP/3 has lower latency for real-world web pages and loads faster than HTTP/2, in some cases over three times faster than HTTP/1.1, which is still commonly the only protocol enabled.
+HTTPS, the secure variant of HTTP, is used by 90.1% of websites.
 
 Technology
 Transport layer

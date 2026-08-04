@@ -177,7 +177,7 @@ macOS 26 Tahoe
 macOS Tahoe was announced on June 9, 2025, during the WWDC 2025 keynote address. It is the first macOS version to feature the new Liquid Glass design introduced across Apple operating systems that year. It is also the first macOS to use Apple's new release number convention, which gives all of Apple's operating systems the same version number. It was released on September 15, 2025.
 
 macOS 27 Golden Gate
-macOS Golden Gate was announced at WWDC on June 8, 2026. It introduces visual intelligence, redesigns Siri, and brings Apple Intelligence features to apps such as Safari and Passwords. Golden Gate also improves Liquid Glass on windows and sidebars, and allows users to adjust the system opacity. It will be released in late 2026.
+macOS Golden Gate was announced at WWDC 2026 on June 8, 2026. It introduces visual intelligence, redesigns Siri, and brings Apple Intelligence features to apps such as Safari and Passwords. Golden Gate also improves Liquid Glass on windows and sidebars, and allows users to adjust the system opacity. It will be released in late 2026. It is the first version of macOS to run exclusively on Macs with Apple silicon and the last version with full Rosetta 2 functionality.
 
 Security
 Apple publishes Apple Platform Security documents to lay out the security protections built into macOS and Mac hardware.

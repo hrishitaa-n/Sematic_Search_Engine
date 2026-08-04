@@ -1,4 +1,4 @@
-In computer networking, a proxy server is a intermediary server application between a client requesting a resource and the server then providing that resource.
+In computer networking, a proxy server is an intermediary server application between a client requesting a resource and the server then providing that resource.
 Instead of connecting directly to a server that can fulfil a request for a resource, such as a file or web page, the client directs the request to the proxy server, which evaluates the request and performs the required network transactions. This serves as a method to control the complexity of the request or provide additional benefits such as load balancing, privacy or security. Proxies were devised to add structure and encapsulation to distributed systems.
 
 Types

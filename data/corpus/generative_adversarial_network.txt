@@ -253,7 +253,7 @@ GANs are implicit generative models, which means that they do not explicitly mod
 
 Compared to fully visible belief networks such as WaveNet and PixelRNN and autoregressive models in general, GANs can generate one complete sample in one pass, rather than multiple passes through the network.
 Compared to Boltzmann machines and linear ICA, there is no restriction on the type of function used by the network.
-Since neural networks are universal approximators, GANs are asymptotically consistent. Variational autoencoders might be universal approximators, but it is not proven as of 2017.
+Since neural networks are universal approximators, GANs are asymptotically consistent. As of 2026, variational autoencoders have been proven to be universal approximators.
 
 Mathematical properties
 Measure-theoretic considerations

@@ -4364,9 +4364,7 @@ Also like PCA, it is based on a covariance matrix derived from the input dataset
 The difference between PCA and DCA is that DCA additionally requires the input of a vector direction, referred to as the impact. 
 Whereas PCA maximises explained variance, DCA maximises probability density given impact.
 The motivation for DCA is to find components of a multivariate dataset that are both likely (measured using probability density) and important (measured using the impact).
-DCA has been used to find the most likely and most serious heat-wave patterns in weather prediction ensembles
-, and the most likely and most impactful changes in rainfall due to climate change
-.
+DCA has been used to find the most likely and most serious heat-wave patterns in weather prediction ensembles, and the most likely and most impactful changes in rainfall due to climate change.
 
 Software/source code
 ALGLIB – a C++ and C# library that implements PCA and truncated PCA

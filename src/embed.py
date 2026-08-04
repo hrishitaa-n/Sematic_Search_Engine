@@ -1,25 +1,31 @@
-#trained AI model
 from sentence_transformers import SentenceTransformer
 import numpy as np
+import os
 
-#load model
-model=SentenceTransformer("all-MiniLM-L6-v2")
+def load_corpus(folder):
+    docs, filenames = [], []
+    for fname in sorted(os.listdir(folder)):
+        if fname.endswith('.txt'):
+            with open(os.path.join(folder, fname), encoding='utf-8') as f:
+                docs.append(f.read().strip())
+            filenames.append(fname)
+    return docs, filenames
 
-sentence="How do i reset my password"
-embedding=model.encode(sentence)
-#384-dimensional vector
+def embed_corpus(docs, model_name='all-MiniLM-L6-v2'):
+    model = SentenceTransformer(model_name)
+    embeddings = model.encode(docs, show_progress_bar=True)
+    return embeddings
 
-print(type(embedding))
-print(embedding.shape)
-print(embedding[:5])
+if __name__ == '__main__':
+    os.makedirs('embeddings', exist_ok=True)
 
-def cosine_sim(a,b):
-    return np.dot(a,b)/(np.linalg.norm(a) * np.linalg.norm(b))
+    docs, filenames = load_corpus('data/corpus')
+    print(f"Found {len(docs)} documents")
 
-e1 = model.encode("How do I reset my password?")
-e2 = model.encode("Account recovery procedure")
-e3 = model.encode("Best restaurants in Mumbai")
+    embeddings = embed_corpus(docs)
 
-print("\nSimilarity Scores:")
-print("Password vs Recovery:", cosine_sim(e1, e2))
-print("Password vs Restaurant:", cosine_sim(e1, e3))
+    np.save('embeddings/vectors.npy', embeddings)
+    with open('embeddings/filenames.txt', 'w') as f:
+        f.write('\n'.join(filenames))
+
+    print(f"Done — shape: {embeddings.shape}")

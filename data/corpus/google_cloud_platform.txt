@@ -2,9 +2,7 @@ Google Cloud is a suite of cloud computing services offered by Google that provi
 Google Cloud provides infrastructure as a service, platform as a service, and serverless computing environments.
 In April 2008, Google announced App Engine, a platform for developing and hosting web applications in Google-managed data centers, which was the first cloud computing service from the company. The service became generally available in November 2011. Since the announcement of App Engine, Google added multiple cloud services to the platform.
 Google Cloud  includes Google Cloud public cloud infrastructure, as well as Google Workspace (G Suite), enterprise versions of Android and ChromeOS, and application programming interfaces (APIs) for machine learning and enterprise mapping services. Since at least 2022, Google's official materials have stated that "Google Cloud" is the new name for "Google Cloud Platform," which may cause naming confusion.
-
-Products
-Google lists over 100 products under the Google Cloud brand. Some of the key services are listed below.
+00 products under the Google Cloud brand. Some of the key services are listed below.
 
 Compute
 App Engine – Platform as a Service to deploy applications developed with Java, PHP, Node.js, Python, C#, .Net, Ruby and Go programming languages

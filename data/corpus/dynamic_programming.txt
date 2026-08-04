@@ -4128,3 +4128,4 @@ Stokey, Nancy; Lucas, Robert E.; Prescott, Edward (1989), Recursive Methods in E
 
 External links
 King, Ian, 2002 (1987), "A Simple Introduction to Dynamic Programming in Macroeconomic Models." An introduction to dynamic programming as an important tool in economic theory.
+Dynamic Programming Explained: What it is and how it works. An easy explanation of dynamic programming via a chessboard example.

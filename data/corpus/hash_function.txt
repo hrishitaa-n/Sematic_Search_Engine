@@ -37,67 +37,37 @@ When testing a hash function, the uniformity of the distribution of hash values 
       
         
           
+            m
+            n
+          
+        
+        
+          
+            ∑
             
-              
-                ∑
-                
-                  j
-                  =
-                  0
-                
-                
-                  m
-                  −
-                  1
-                
-              
-              (
-              
-                b
-                
-                  j
-                
-              
-              )
-              (
-              
-                b
-                
-                  j
-                
-              
-              +
+              j
+              =
               1
-              )
-              
-                /
-              
-              2
             
             
-              (
-              n
-              
-                /
-              
-              2
               m
-              )
-              (
-              n
-              +
+            
+          
+          
+            b
+            
+              j
+            
+            
               2
-              m
-              −
-              1
-              )
             
           
         
-        ,
+        −
+        n
       
     
-    {\displaystyle {\frac {\sum _{j=0}^{m-1}(b_{j})(b_{j}+1)/2}{(n/2m)(n+2m-1)}},}
+    {\displaystyle {\frac {m}{n}}{\sum _{j=1}^{m}b_{j}^{2}}-n}
   
 
 where n is the number of keys, m is the number of buckets, and bj is the number of items in bucket j.

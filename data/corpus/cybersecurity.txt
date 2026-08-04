@@ -80,7 +80,6 @@ IP address spoofing, where an attacker alters the source IP address in a network
 MAC spoofing, where an attacker modifies the Media Access Control (MAC) address of their network interface controller to obscure their identity, or to pose as another.
 Biometric spoofing, where an attacker produces a fake biometric sample to pose as another user.
 Address Resolution Protocol (ARP) spoofing, where an attacker sends spoofed address resolution protocol onto a local area network to associate their Media Access Control address with a different host's IP address. This causes data to be sent to the attacker rather than the intended host.
-In 2018, the cybersecurity firm Trellix published research on the life-threatening risk of spoofing in the healthcare industry.
 
 Tampering
 Tampering describes a malicious modification or alteration of data. It is an intentional but unauthorized act resulting in the modification of a system, components of systems, its intended behavior, or data. So-called Evil Maid attacks and security services planting of surveillance capability into routers are examples.

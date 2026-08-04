@@ -40,7 +40,7 @@ A greedy algorithm finds the optimal solution to Malfatti's problem of finding t
 In decision tree learning, greedy algorithms are commonly used, however they are not guaranteed to find the optimal solution.
 One popular such algorithm is the ID3 algorithm for decision tree construction.
 A greedy algorithm constructs the Zeckendorf representation (or Fibonacci coding) of a natural number. Subtracting the largest Fibonacci number less than or equal to the natural number repeatedly gives its Zecekndorf representation. The greedy algorithm is extracted from the existence proof of the Zeckendorf representation. The uniqueness of the Zeckendorf representation guarantees that no other non-consecutive Fibonacci sum can give a different output.
-Fibonacci described an greedy algorithm for computing Egyptian fractions.
+Fibonacci described a greedy algorithm for computing Egyptian fractions.
 Greedy algorithms appear in network routing. Using greedy routing, a message is forwarded to the neighbouring node which is "closest" to the destination. The notion of a node's location (and hence "closeness") may be determined by its physical location, as in geographic routing used by ad hoc networks.  Location may also be an entirely artificial construct as in small world routing and distributed hash table.
 
 Greedy algorithms on graphs

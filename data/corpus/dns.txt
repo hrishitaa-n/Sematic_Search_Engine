@@ -32,6 +32,9 @@ A label may contain zero to 63 characters, because the length is only allowed to
 Although no technical limitation exists to prevent domain name labels from using any character that is representable by an octet, hostnames use a preferred format and character set. The characters allowed in labels are a subset of the ASCII character set, consisting of characters a through z, A through Z, digits 0 through 9, and hyphen. This rule is known as the LDH rule (letters, digits, hyphen). Domain names are interpreted in a case-independent manner. Labels may not start or end with a hyphen. An additional rule requires that top-level domain names should not be all-numeric.
 The limited set of ASCII characters permitted in the DNS prevented the representation of names and words of many languages in their native alphabets or scripts. To make this possible, ICANN approved the Internationalizing Domain Names in Applications (IDNA) system, by which user applications, such as web browsers, map Unicode strings into the valid DNS character set using Punycode. In 2009, ICANN approved the installation of internationalized domain name country code top-level domains (ccTLDs). In addition, many registries of the existing top-level domain names (TLDs) have adopted the IDNA system, guided by RFC 5890, RFC 5891, RFC 5892, RFC 5893.
 
+Delegation
+The mechanism by which responsibility for different parts of the DNS name space is assigned to different name servers is called delegation. Every public network domain under the top-level domains is delegated, by having an NS record in the parent domain pointing to the DNS names of the name servers for the delegated (or child) domain. If those name servers are in the delegated domain, the parent domain also must contain glue records, which contain the IP addresses of the child domain name servers.
+
 Name servers
 The Domain Name System is maintained by a distributed database system, which uses the client–server model. The nodes of this database are the name servers. Each domain has at least one authoritative DNS server that publishes information about that domain and the name servers of any domains subordinate to it. The top of the hierarchy is served by the root name servers, the servers to query when looking up (resolving) a TLD.
 
@@ -70,7 +73,7 @@ For example, if the authoritative name server for example.org is ns1.example.org
 
 Record caching
 A common approach to reduce the query load on DNS servers is to cache the results of name resolution locally or on intermediary resolver hosts. Each DNS query result comes with a time to live (TTL), which indicates how long the information remains valid before it needs to be discarded or refreshed. This TTL is determined by the administrator of the authoritative DNS server and can range from a few seconds to several days or even weeks.
-As a result of this distributed caching architecture, changes to DNS records do not propagate throughout the network immediately, but require all caches to expire and to be refreshed after the TTL. RFC 1912 conveys basic rules for determining appropriate TTL values.
+As a result of this distributed caching architecture, changes to DNS records do not propagate throughout the network immediately, but require all caches to expire and to be refreshed after the TTL. RFC 1912 conveys basic rules for determining appropriate TTL values, with 1 to 5 days as typical values, and 1 to 2 weeks for records such as addresses of mail hosts, or name servers which are not expected to change often. TTL values for individual records can be reduced in anticipation of a change, increasing network traffic until the change is made, 
 Some resolvers may override TTL values, as the protocol supports caching for up to sixty-eight years or no caching at all. Negative caching, i.e. the caching of the fact of non-existence of a record, is determined by name servers authoritative for a zone which must include the Start of Authority (SOA) record when reporting no data of the requested type exists. The value of the minimum field of the SOA record and the TTL of the SOA itself is used to establish the TTL for the negative answer.
 
 Reverse lookup
@@ -84,7 +87,6 @@ The DNS resolver will almost invariably have a cache (see above) containing rece
 Broken resolvers
 Some large ISPs have configured their DNS servers to violate rules, such as by disobeying TTLs, or by indicating that a domain name does not exist just because one of its name servers does not respond.
 Some applications such as web browsers maintain an internal DNS cache to avoid repeated lookups via the network. This practice can add extra difficulty when debugging DNS issues as it obscures the history of such data. These caches typically use very short caching times on the order of one minute.
-Internet Explorer represents a notable exception: versions up to IE 3.x cache DNS records for 24 hours by default. Internet Explorer 4.x and later versions (up to IE 8) decrease the default timeout value to half an hour, which may be changed by modifying the default configuration.
 When Google Chrome detects issues with the DNS server it displays a specific error message.
 
 Other applications
@@ -149,8 +151,8 @@ When sent over an Internet Protocol network, all records (answer, authority, and
 
 NAME is the fully qualified domain name of the node in the tree. On the wire, the name may be shortened using label compression where ends of domain names mentioned earlier in the packet can be substituted for the end of the current domain name.
 TYPE is the record type. It indicates the format of the data and it gives a hint of its intended use. For example, the A record is used to translate from a domain name to an IPv4 address, the NS record lists which name servers can answer lookups on a DNS zone, and the MX record specifies the mail server used to handle mail for  a domain specified in an e-mail address.
+CLASS of a record is set to IN (for Internet) for common DNS records involving Internet hostnames, servers, or IP addresses. In addition, the classes Chaos (CH) and Hesiod (HS) exist. Each class is an independent name space with potentially different delegations of DNS zones.
 RDATA is data of type-specific relevance, such as the IP address for address records, or the priority and hostname for MX records. Well known record types may use label compression in the RDATA field, but "unknown" record types must not (RFC 3597).
-The CLASS of a record is set to IN (for Internet) for common DNS records involving Internet hostnames, servers, or IP addresses. In addition, the classes Chaos (CH) and Hesiod (HS) exist. Each class is an independent name space with potentially different delegations of DNS zones.
 In addition to resource records defined in a zone file, the domain name system also defines several request types that are used only in communication with other DNS nodes (on the wire), such as when performing zone transfers (AXFR/IXFR) or for EDNS (OPT).
 
 Wildcard records
@@ -313,7 +315,7 @@ RFC 1101 – "DNS Encoding of Network Names and Other Types," Status Unknown
 
 External links
 
-Vixie, Paul (4 May 2007). "DNS Complexity". ACM Queue. Archived from the original on 29 March 2023.
+Vixie, Paul (4 May 2007). "DNS Complexity". Queue. 5 (3). ACM Queue: 24–29. doi:10.1145/1242489.1242499. Archived from the original on 29 March 2023.
 Ball, James (28 February 2014). "Meet the seven people who hold the keys to worldwide internet security". The Guardian. Guardian News & Media Limited. Retrieved 28 February 2014.
 Kruger, Lennard G. (18 November 2016). "Internet Governance and the Domain Name System: Issues for Congress" (PDF). Congressional Research Service. Retrieved 27 July 2024.
 Zytrax.com, Open Source Guide – DNS for Rocket Scientists.

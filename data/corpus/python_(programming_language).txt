@@ -1,6 +1,6 @@
 Python is a high-level, general-purpose programming language that emphasizes code readability, simplicity, and ease-of-writing with the use of significant indentation, an extensive ("batteries-included") standard library, and garbage collection. Python supports multiple programming paradigms but with an emphasis on object-oriented programming and dynamic typing.
 Guido van Rossum began working on Python in the late 1980s as a successor to the ABC programming language. Python 3.0, released in 2008, was a major revision and not completely backward-compatible with earlier versions. Beginning with Python 3.5, capabilities and keywords for typing were added to the language, allowing optional static typing. As of 2026, the Python Software Foundation supports Python 3.10, 3.11, 3.12, 3.13, and 3.14, following the project's annual release cycle and five-year support policy. Python 3.15 is currently in the beta development phase, and the stable release is expected to launch in October 2026. Earlier versions in the 3.x series have reached end-of-life and no longer receive security updates. 
-Python has gained extensive use in the machine learning community. It is widely taught as an introductory programming language. Since 2003, Python has consistently ranked among the top ten most popular programming languages in the  TIOBE Programming Community Index, which ranks programming languages based on searches across 24 platforms.
+Python is widely taught as an introductory programming language.
 
 History
 Python was conceived in the late 1980s by Guido van Rossum at Centrum Wiskunde & Informatica (CWI) in the Netherlands. It was designed as a successor to the ABC programming language, which was inspired by SETL, capable of exception handling and interfacing with the Amoeba operating system. Python implementation began in December 1989. Van Rossum first released it in 1991 as Python 0.9.0. Van Rossum assumed sole responsibility for the project, as the lead developer, until 12 July 2018, when he announced his "permanent vacation" from responsibilities as Python's "benevolent dictator for life" (BDFL); this title was bestowed on him by the Python community to reflect his long-term commitment as the project's chief decision-maker. In January 2019, active Python core developers elected a five-member Steering Council to lead the project.
@@ -19,7 +19,7 @@ Explicit is better than implicit.
 Simple is better than complex.
 Readability counts.
 Special cases aren't special enough to break the rules.
-Although practicality beats purity,  errors should never pass silently, unless explicitly silenced.
+Although practicality beats purity, errors should never pass silently, unless explicitly silenced.
 There should be one-- and preferably only one --obvious way to do it.
 However, Python has received criticism for violating these principles and adding unnecessary language bloat. Responses to these criticisms note that the Zen of Python is a guideline rather than a rule. The addition of some new features had been controversial: Guido van Rossum resigned as Benevolent Dictator for Life after conflict about adding the assignment expression operator in Python 3.8.
 Nevertheless, rather than building all functionality into its core, Python was designed to be highly extensible through modules. This compact modularity has made it particularly popular as a means of adding programmable interfaces to existing applications. Van Rossum's vision of a small core language with a large standard library and an easily extensible interpreter stemmed from his frustrations with ABC, which represented the opposite approach.
@@ -136,7 +136,7 @@ Canopy, a commercial IDE from Enthought that emphasizes scientific computing.
 
 Implementations
 Reference implementation
-CPython is the reference implementation of Python. This implementation is written in C, meeting the C11 standard since version 3.11. Older versions use the C89 standard with several select C99 features, but third-party extensions are not limited to older C versions—e.g., they can be implemented using C11 or C++. CPython compiles Python programs into an intermediate bytecode, which is then executed by a virtual machine. CPython is distributed with a large standard library written in a combination of C and native Python.
+CPython is the reference implementation of Python. This implementation is written in C; meeting the C11 standard since version 3.11. Older versions use the C89 standard with several select C99 features, but third-party extensions are not limited to older C versions—e.g., they can be implemented using C11 or C++. CPython compiles Python programs into an intermediate bytecode, which is then executed by a virtual machine. CPython is distributed with a large standard library written in a combination of C and native Python.
 CPython is available for many platforms, including Windows and most modern Unix-like systems, including macOS (and Apple M1 Macs, since Python 3.9.1, using an experimental installer). Starting with Python 3.9, the Python installer intentionally fails to install on Windows 7 and 8; Windows XP was supported until Python 3.5. Old Python versions unofficially support VMS (mostly supporting) and OpenVMS x86-64 has Python 3.10 support. Platform portability was one of Python's earliest priorities. During development of Python 1 and 2, even OS/2 and Solaris were supported; since that time, support has been dropped for many platforms.
 All current Python versions (since 3.7) support only operating systems that feature multithreading, by now supporting not nearly as many operating systems (dropping many outdated) than in the past.
 
@@ -155,7 +155,7 @@ MicroPython and CircuitPython are Python 3 variants that are optimized for micro
 Pyston is a variant of the Python runtime that uses just-in-time compilation to speed up execution of Python programs.
 Cinder is a performance-oriented fork of CPython 3.8 that features a number of optimizations, including bytecode inline caching, eager evaluation of coroutines, a method-at-a-time JIT, and an experimental bytecode compiler.
 The Snek embedded computing language "is Python-inspired, but it is not Python. It is possible to write Snek programs that run under a full Python system, but most Python programs will not run under Snek." Snek is compatible with 8-bit AVR microcontrollers such as ATmega 328P-based Arduino, as well as larger microcontrollers that are compatible with MicroPython. Snek is an imperative language that (unlike Python) omits object-oriented programming. Snek supports only one numeric data type, which features 32-bit single precision (resembling JavaScript numbers, though smaller).
-RustPython is an implementation written in Rust (programming language). It aims to be compatible with CPython, including its C-ABI. Currently, it is used in GrepTimeDB and Ruff among other projects.
+RustPython is an implementation written in Rust language. It aims to be compatible with CPython, including its C-ABI. Currently, it is used in GrepTimeDB and Ruff among other projects.
 
 Unsupported implementations
 Stackless Python is a significant fork of CPython that implements microthreads. This implementation uses the call stack differently, thus allowing massively concurrent programs. PyPy also offers a stackless version.
@@ -258,3 +258,4 @@ External links
 Official website 
 Python documentation
 The Python Tutorial
+CultRepo (28 August 2025). The Story of Python and how it took over the world | Python: The Documentary. Retrieved 22 July 2026 – via YouTube.

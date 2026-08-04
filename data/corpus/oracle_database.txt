@@ -1,5 +1,4 @@
-Oracle Database (marketed since 2025 as Oracle AI Database, and also
-referred to as Oracle DBMS or simply Oracle) is a proprietary
+Oracle AI Database (commonly referred to as Oracle Database, Oracle DBMS, Oracle Autonomous Database, or simply as Oracle) is a proprietary
 relational database management system (RDBMS) developed and marketed by
 Oracle Corporation. First released in 1979, it was among the earliest
 commercially available databases to use SQL, and as of 2026 it is ranked as
@@ -9,7 +8,7 @@ data warehousing (DW), and mixed database workloads. As a
 converged database, it supports multiple data models within a single engine,
 including relational, JSON document, XML, spatial, graph,
 text, and AI vector data, all queryable through SQL.
-Oracle Database runs on-premises, on Oracle engineered systems such as Oracle Exadata, on Oracle Cloud Infrastructure, and as a managed Autonomous Database service. It is also offered inside Microsoft Azure, Google Cloud, and Amazon Web Services data centers through Oracle's multicloud offerings. The current long-term release is Oracle AI Database 26ai, which was introduced in October 2025.
+Oracle AI Database runs on-premises, on Oracle engineered systems such as Oracle Exadata, on Oracle Cloud Infrastructure, and as a managed Autonomous Database service. It is also offered inside Microsoft Azure, Google Cloud, and Amazon Web Services data centers through Oracle's multicloud offerings. The current long-term release is Oracle AI Database 26ai, which was introduced in October 2025.
 
 History
 Larry Ellison and his two friends and former co-workers, Bob Miner and Ed Oates, started a consultancy called Software Development Laboritories (SDL) in 1977, later Oracle Corporation. SDL developed the original version of the Oracle software. The name Oracle comes from the code-name of a Central Intelligence Agency-funded project Ellison has worked on while formerly employed by Ampex; the CIA was Oracle's first customer, and allowed the company to use the code name for the new product.
@@ -28,7 +27,7 @@ Oracle Database 12c (2013) introduced the multitenant architecture and the In-Me
 
 Architecture
 Instances and databases
-An Oracle Database system consists of an instance and a database. The instance is a set
+An Oracle AI Database system consists of an instance and a database. The instance is a set
 of memory structures and background processes; the database is
 the set of files that store data.
 An instance exists only in memory, and in the multitenant configuration a single instance
@@ -74,7 +73,7 @@ Concurrency and consistency
 Oracle Database provides multiversion read consistency, also known as consistent read. When a transaction modifies data, the database writes the previous values to undo segments, allowing earlier versions of the same data to be read without blocking ongoing writes. In Oracle’s default read-committed isolation mode, each SQL statement sees only committed data, and that data is consistent as of a single point in time when the statement began; newly committed changes from other transactions are not incrementally exposed while the statement is running. Serializable and read-only transactions extend this behavior to transaction-level read consistency, so the transaction sees data as of the time the transaction began. This model allows reads and writes to proceed without blocking one another.
 
 Data models
-Oracle Database is a converged, multi-model database: a single engine natively supports
+Oracle AI Database is a converged, multi-model database: a single engine natively supports
 several data models and processes them under one set of transactional guarantees, rather
 than relying on separate specialized systems. Independent reporting describes the engine
 as handling relational, JSON document, graph, spatial, and vector data together in one
@@ -86,6 +85,9 @@ model.
 JSON Relational Duality, introduced in Oracle Database 23ai, lets the same data be
 accessed and updated either as relational tables or as JSON documents.
 
+Relational data types
+Oracle AI Database includes traditional structured data stored in tables, using numeric, character, and date/time types. These form the basis of SQL-based data storage and querying and are used alongside other data models within the same database system.
+
 High availability and scalability
 Oracle Database includes technologies for high availability, disaster recovery, and scale-out deployment, including Oracle Real Application Clusters (RAC), Oracle Data Guard, Oracle GoldenGate, Oracle Flashback, Oracle Sharding, and Oracle Exadata.
 
@@ -96,12 +98,12 @@ Oracle GoldenGate is a replication product used for heterogeneous replication ac
 Oracle Flashback technologies provide point-in-time recovery features used to correct user-induced errors, including Flashback Query, Flashback Table, Flashback Drop, and Flashback Database.
 
 Scalability
-Oracle Sharding distributes data from a single logical database across multiple independent databases, called shards, so that each shard stores part of the data and can run on separate resources.
+Oracle Globally Distributed Database, formerly known as Oracle Sharding, distributes data from a single logical database across multiple independent databases, called shards, so that each shard stores part of the data and can run on separate resources. Oracle AI Database 26ai added RAFT-based replication for globally distributed database deployments, supporting higher availability and automatic failover across shards.
 Oracle Exadata is an engineered database system that combines database servers with storage servers. Its Smart Scan storage-offload feature moves some processing, such as predicate filtering and column projection, from the database layer to the storage layer, reducing the volume of data returned to the database servers.
 
 Performance
 Oracle Database includes features intended to improve query and transaction performance on large data sets, including Database In-Memory, partitioning, parallel execution, and compression.
-The Database In-Memory feature adds an in-memory column store for selected database objects, allowing analytic queries to use a column-oriented representation while the database continues to maintain the traditional row-oriented representation used by transactional workloads.
+The Database In-Memory feature adds an in-memory column store for selected database objects, allowing analytic queries to use a column-oriented in-memory representation, while the data can be stored in either transactional oriented row format or analytics oriented hybrid-columnar format.
 Partitioning divides large tables and indexes into smaller physical pieces that remain a single logical object to applications. Each partition can be managed separately, and query performance can improve when the optimizer eliminates irrelevant partitions, a technique known as partition pruning.
 For large operations, parallel execution can break a statement or other database task into smaller units that are processed concurrently, allowing the system to use more CPU and input/output resources than a serial execution plan.
 Oracle Database also supports several table-compression methods. OLTP compression is intended for active tables, while Hybrid Columnar Compression reorganizes data into compression units and provides query and archive compression modes with higher compression ratios for less frequently updated data.
@@ -110,20 +112,21 @@ Security
 Oracle Database includes security features for encryption, auditing, and access control. A Common Criteria certification report for Oracle AI Database 26ai identified configurable audit capture, fine-grained access controls, user identification and authentication, and security management among the security functions of the evaluated target.
 Transparent Data Encryption (TDE) encrypts database data below the SQL layer, with the database engine encrypting and decrypting data as it reads and writes it from the file system. Data redaction and masking features are used to reduce exposure of sensitive information in query results and applications.
 For access control, Virtual Private Database (VPD) dynamically adds predicates to SQL statements against tables or views, allowing row and column restrictions to be enforced by database policies. Oracle Label Security provides label-based row-level access control on protected tables, and Oracle Database Vault adds mandatory access controls such as realms and command rules to restrict access to schemas, objects, and SQL operations, including by highly privileged users.
-Oracle Database 23ai added security and privilege-management features including SQL Firewall, schema-level privileges, and enhanced data redaction and masking. Oracle AI Database 26ai received Common Criteria certification at EAL2 augmented by ALC_FLR.3 for a specified evaluated configuration; the certification report noted that Database Vault, Oracle Label Security, external clients, DBaaS deployments, and RAC were outside that evaluated configuration.
+Oracle Database 23ai added security and privilege-management features including SQL Firewall, schema-level privileges, and enhanced data redaction and masking. 
+Oracle AI Database 26ai added Deep Data Security, described in third-party coverage as embedding fine-grained authorization directly in the database for workloads such as AI agents, analytics tools, and enterprise applications. Oracle AI Database 26ai received Common Criteria certification at EAL2 augmented by ALC_FLR.3 for a specified evaluated configuration; the certification report noted that Database Vault, Oracle Label Security, external clients, DBaaS deployments, and RAC were outside that evaluated configuration.
 
 AI capabilities
 In 2024, Oracle renamed the long-term Oracle Database 23c release as Oracle Database 23ai, a change independent coverage attributed to the addition of features for AI-oriented application development. Oracle AI Database 26ai later added features aimed at agentic AI use cases, including Select AI Agent, Agent Factory, and integration with Oracle's MCP servers.
 AI Vector Search, introduced with the 23c/23ai generation, adds a native vector data type, vector indexes, and vector-search SQL operators. These features allow semantic representations of documents, images, and other unstructured data to be stored as vectors and used for similarity search in Oracle Database. Coverage of the 23ai release also described AI Vector Search as supporting retrieval-augmented generation, a technique that combines large language models with private business data to answer natural-language questions.
-Select AI is a natural-language interface for querying data in Oracle Database. Independent coverage described the feature as allowing users to query data in natural language and use large language models to generate SQL for those questions. In 26ai, Select AI Agent extended this approach into a framework for building, deploying, and managing agents that can use database functions and knowledge context.
+Select AI is a natural-language interface for querying data in Oracle AI Database. Independent coverage described the feature as allowing users to query data in natural language and use large language models to generate SQL for those questions. In 26ai, Select AI Agent extended this approach into a framework for building, deploying, and managing agents that can use database functions and knowledge context.
 Oracle has also added support for the Model Context Protocol (MCP) through an MCP server for Oracle Database, integrated with SQLcl. InfoWorld described the server as allowing developers to build AI agents that can query, retrieve, and reason over enterprise data in Oracle Databases without custom integration layers. The 26ai release also added AI Private Agent Factory, described in third-party coverage as a no-code framework for deploying private, containerized agents in controlled environments.
 The database also includes older in-database machine-learning and data-mining capabilities. Predictive Analytics Using Oracle Data Miner describes Oracle Data Miner and Oracle Data Mining as supporting models such as association rules, classification, clustering, regression, and anomaly detection, with models built and used through SQL and PL/SQL packages. A later Apress book describes the Oracle Machine Learning platform as including OML4SQL, OML Notebooks, OML4R, and OML4Py for developing and deploying machine-learning models with Oracle Database and Autonomous Database.
 
 Programming and development
 Oracle Database is programmed and queried primarily through SQL, a language used to define, access, and manipulate relational data. Oracle Database extends SQL with PL/SQL, a procedural language used for server-side program units such as stored procedures, functions, triggers, and packages.
 Application logic can also run inside the database in other languages. Oracle8i introduced support for Java stored procedures, allowing Java code to be called from PL/SQL. Oracle Database 21c added in-database JavaScript execution through the Oracle Multilingual Engine, with interfaces to Oracle data types, SQL, and PL/SQL stored procedures.
-Applications connect to Oracle Database through client drivers and programming interfaces. Examples include the Oracle Call Interface (OCI), a low-level application programming interface commonly used from C and through higher-level language bindings; Java Database Connectivity (JDBC) for Java applications; and ODP.NET for .NET applications.
-For web application development, Oracle REST Data Services (ORDS) provides a REST-oriented access layer for Oracle Database. Oracle Application Express (APEX) is a web-based application development framework built into Oracle Database.
+Applications connect to Oracle Database through client drivers and programming interfaces. Examples include the Oracle Call Interface (OCI), a low-level application programming interface commonly used from C and through higher-level language bindings; Java Database Connectivity (JDBC) for Java applications; ODP.NET for .NET applications; and python-oracledb for Python applications.
+For web application development, Oracle REST Data Services (ORDS) provides a REST-oriented access layer for Oracle Database. Oracle Application Express (APEX) is a web-based application development framework built into Oracle Database. In 2024, Oracle added APEX AI Assistant to APEX 24.1, enabling natural-language application creation, SQL assistance, and conversational AI interfaces in applications.
 
 Editions
 Oracle sells its database in a full-featured Enterprise Edition and a lower-cost
