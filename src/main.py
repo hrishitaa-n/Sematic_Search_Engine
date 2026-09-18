@@ -38,3 +38,41 @@ def search(q: str, top_k: int = 5, db: Session = Depends(get_db)):
             "score": round(float(dist), 4)
         })
     return {"query": q, "results": results}
+from fastapi import UploadFile, File
+import os
+
+def chunk_text(text, chunk_size=256, overlap=50):
+    words = text.split()
+    chunks = []
+    start = 0
+    while start < len(words):
+        end = start + chunk_size
+        chunk = ' '.join(words[start:end])
+        chunks.append(chunk)
+        start += chunk_size - overlap
+    return chunks
+
+@app.post("/ingest")
+async def ingest(file: UploadFile = File(...), db: Session = Depends(get_db)):
+    content = await file.read()
+    text = content.decode('utf-8')
+    chunks = chunk_text(text)
+
+    for i, chunk in enumerate(chunks):
+        doc = Document(
+            filename=file.filename,
+            chunk_index=i,
+            chunk_text=chunk
+        )
+        db.add(doc)
+    db.commit()
+
+    return {
+        "filename": file.filename,
+        "chunks_stored": len(chunks)
+    }
+
+@app.get("/documents")
+def list_documents(db: Session = Depends(get_db)):
+    docs = db.query(Document.filename).distinct().all()
+    return {"documents": [d[0] for d in docs]}
