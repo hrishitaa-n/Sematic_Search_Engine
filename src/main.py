@@ -9,6 +9,13 @@ from sentence_transformers import SentenceTransformer
 from database import get_db, engine, Base
 from models import Document
 
+from groq import Groq
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+
 # setup
 app = FastAPI()
 model = SentenceTransformer('all-MiniLM-L6-v2')
@@ -76,3 +83,60 @@ async def ingest(file: UploadFile = File(...), db: Session = Depends(get_db)):
 def list_documents(db: Session = Depends(get_db)):
     docs = db.query(Document.filename).distinct().all()
     return {"documents": [d[0] for d in docs]}
+
+@app.get("/ask")
+def ask(q: str, db: Session = Depends(get_db)):
+    # Step 1 — embed the query and search FAISS
+    query_vec = model.encode([q]).astype(np.float32)
+    faiss.normalize_L2(query_vec)
+    distances, indices = index.search(query_vec, 5)
+
+    # Step 2 — fetch chunk texts from PostgreSQL
+    chunks = []
+    for dist, idx in zip(distances[0], indices[0]):
+        filename = filenames[idx]
+        db_chunk = db.query(Document).filter(
+            Document.filename == filename
+        ).order_by(Document.chunk_index).first()
+
+        if db_chunk:
+            chunks.append({
+                "filename": filename,
+                "text": db_chunk.chunk_text,
+                "score": round(float(dist), 4)
+            })
+
+    # Step 3 — build context string
+    context = ""
+    for i, chunk in enumerate(chunks):
+        context += f"[Source {i+1}] {chunk['filename']}\n{chunk['text']}\n\n"
+
+    # Step 4 — send to Groq LLM
+    response = groq_client.chat.completions.create(
+        model="qwen/qwen3.8-27b",
+        messages=[
+            {
+                "role": "system",
+                "content": """You are a document assistant. Answer the user's 
+question using ONLY the context provided below. If the answer is not in 
+the context, say 'I don't have enough information to answer that.'
+Cite sources as [Source N].
+
+Context:
+""" + context
+            },
+            {
+                "role": "user",
+                "content": q
+            }
+        ]
+    )
+
+    answer = response.choices[0].message.content
+
+    # Step 5 — return answer + sources
+    return {
+        "question": q,
+        "answer": answer,
+        "sources": [{"filename": c["filename"], "score": c["score"]} for c in chunks]
+    }
