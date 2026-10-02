@@ -16,6 +16,8 @@ import pdfplumber
 from database import get_db, engine, Base
 from models import Document
 
+from rebuild_index import rebuild_index
+
 # ── startup ──────────────────────────────────────────────
 load_dotenv()
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
@@ -65,32 +67,112 @@ def search(q: str, top_k: int = 5, db: Session = Depends(get_db)):
 
 @app.post("/ingest")
 async def ingest(file: UploadFile = File(...), db: Session = Depends(get_db)):
+
+    # Check if file already exists
+    existing = db.query(Document).filter(
+        Document.filename == file.filename
+    ).first()
+
+    if existing:
+        return {
+            "error": f"{file.filename} already ingested. Delete it first to re-ingest."
+        }
+
     content = await file.read()
     text = content.decode('utf-8')
+
     chunks = chunk_text(text)
+
     for i, chunk in enumerate(chunks):
-        db.add(Document(filename=file.filename, chunk_index=i, chunk_text=chunk))
+        db.add(
+            Document(
+                filename=file.filename,
+                chunk_index=i,
+                chunk_text=chunk
+            )
+        )
+
     db.commit()
-    return {"filename": file.filename, "chunks_stored": len(chunks)}
+
+    print("Rebuilding FAISS index...")
+    rebuild_index()
+
+    # reload index into memory
+    global index, chunk_ids, chunk_filenames
+
+    index = faiss.read_index('embeddings/chunks_index.faiss')
+    chunk_ids = np.load('embeddings/chunk_ids.npy')
+    chunk_filenames = np.load('embeddings/chunk_filenames.npy')
+
+    return {
+        "filename": file.filename,
+        "chunks_stored": len(chunks),
+        "index_rebuilt": True
+    }
+
 
 @app.post("/ingest-pdf")
 async def ingest_pdf(file: UploadFile = File(...), db: Session = Depends(get_db)):
+
+    # Check if file already exists
+    existing = db.query(Document).filter(
+        Document.filename == file.filename
+    ).first()
+
+    if existing:
+        return {
+            "error": f"{file.filename} already ingested. Delete it first to re-ingest."
+        }
+
     content = await file.read()
+
     text = ""
     page_count = 0
+
     with pdfplumber.open(io.BytesIO(content)) as pdf:
+
         page_count = len(pdf.pages)
+
         for page in pdf.pages:
             page_text = page.extract_text()
+
             if page_text:
                 text += page_text + "\n"
+
     if not text.strip():
-        return {"error": "Could not extract text. PDF may be scanned or image-based."}
+        return {
+            "error": "Could not extract text. PDF may be scanned or image-based."
+        }
+
     chunks = chunk_text(text)
+
     for i, chunk in enumerate(chunks):
-        db.add(Document(filename=file.filename, chunk_index=i, chunk_text=chunk))
+        db.add(
+            Document(
+                filename=file.filename,
+                chunk_index=i,
+                chunk_text=chunk
+            )
+        )
+
     db.commit()
-    return {"filename": file.filename, "pages": page_count, "chunks_stored": len(chunks)}
+
+    print("Rebuilding FAISS index...")
+    rebuild_index()
+
+    # reload index into memory
+    global index, chunk_ids, chunk_filenames
+
+    index = faiss.read_index('embeddings/chunks_index.faiss')
+    chunk_ids = np.load('embeddings/chunk_ids.npy')
+    chunk_filenames = np.load('embeddings/chunk_filenames.npy')
+
+    return {
+        "filename": file.filename,
+        "pages": page_count,
+        "chunks_stored": len(chunks),
+        "index_rebuilt": True
+    }
 
 @app.get("/documents")
 def list_documents(db: Session = Depends(get_db)):
