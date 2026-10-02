@@ -22,10 +22,9 @@ groq_client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 app = FastAPI()
 model = SentenceTransformer('all-MiniLM-L6-v2')
-embeddings = np.load('embeddings/vectors.npy')
-with open('embeddings/filenames.txt') as f:
-    filenames = f.read().strip().split('\n')
-index = faiss.read_index('embeddings/index.faiss')
+index = faiss.read_index('embeddings/chunks_index.faiss')
+chunk_ids = np.load('embeddings/chunk_ids.npy')
+chunk_filenames = np.load('embeddings/chunk_filenames.npy')
 Base.metadata.create_all(bind=engine)
 
 # ── helpers ───────────────────────────────────────────────
@@ -50,11 +49,16 @@ def search(q: str, top_k: int = 5, db: Session = Depends(get_db)):
     query_vec = model.encode([q]).astype(np.float32)
     faiss.normalize_L2(query_vec)
     distances, indices = index.search(query_vec, top_k)
+
     results = []
     for dist, idx in zip(distances[0], indices[0]):
+        chunk_id = int(chunk_ids[idx])
+        filename = chunk_filenames[idx]
+        chunk = db.query(Document).filter(Document.id == chunk_id).first()
         results.append({
             "rank": len(results) + 1,
-            "filename": filenames[idx],
+            "filename": filename,
+            "chunk_text": chunk.chunk_text if chunk else "",
             "score": round(float(dist), 4)
         })
     return {"query": q, "results": results}
@@ -101,14 +105,13 @@ def ask(q: str, db: Session = Depends(get_db)):
 
     chunks = []
     for dist, idx in zip(distances[0], indices[0]):
-        filename = filenames[idx]
-        db_chunk = db.query(Document).filter(
-            Document.filename == filename
-        ).order_by(Document.chunk_index).first()
-        if db_chunk:
+        chunk_id = int(chunk_ids[idx])
+        filename = chunk_filenames[idx]
+        chunk = db.query(Document).filter(Document.id == chunk_id).first()
+        if chunk:
             chunks.append({
                 "filename": filename,
-                "text": db_chunk.chunk_text,
+                "text": chunk.chunk_text,
                 "score": round(float(dist), 4)
             })
 
